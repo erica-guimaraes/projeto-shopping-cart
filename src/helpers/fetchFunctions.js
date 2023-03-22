@@ -2,6 +2,13 @@ export const fetchProduct = () => {
   // seu código aqui
 };
 
-export const fetchProductsList = () => {
-  // seu código aqui
+const BASE_URL = 'https://api.mercadolibre.com/sites/MLB/search?q=';
+
+export const fetchProductsList = (busca) => {
+  if (busca === undefined) {
+    return new Error('Termo de busca não informado');
+  }
+  fetch(`${BASE_URL}${busca}`)
+    .then((response) => response.json())
+    .then((data) => data.results);
 };
