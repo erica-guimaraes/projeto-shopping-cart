@@ -5,10 +5,10 @@ export const fetchProduct = () => {
 const BASE_URL = 'https://api.mercadolibre.com/sites/MLB/search?q=';
 
 export const fetchProductsList = (busca) => {
-  if (busca === undefined) {
-    return new Error('Termo de busca não informado');
+  if (!busca) {
+    throw new Error('Termo de busca não informado');
   }
-  fetch(`${BASE_URL}${busca}`)
+  return fetch(`${BASE_URL}${busca}`)
     .then((response) => response.json())
     .then((data) => data.results);
 };
