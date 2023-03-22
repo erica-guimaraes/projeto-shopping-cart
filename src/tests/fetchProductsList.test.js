@@ -21,6 +21,4 @@ describe('Teste a função fetchProductsList', () => {
   it('Testando o retorno da função fetchProductsList com o argumento computador ', async() => {
     expect(await fetchProductsList('computador')).toEqual(computadorSearch);
   });
-  // 
-  
 });
