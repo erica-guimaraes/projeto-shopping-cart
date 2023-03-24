@@ -1,4 +1,5 @@
-import { removeCartID } from './cartFunctions';
+import { removeCartID, saveCartID } from './cartFunctions';
+import { fetchProduct } from './fetchFunctions';
 
 // Esses comentários que estão antes de cada uma das funções são chamados de JSdoc,
 // experimente passar o mouse sobre o nome das funções e verá que elas possuem descrições!
@@ -121,6 +122,17 @@ export const createProductElement = ({ id, title, thumbnail, price }) => {
     'product__add',
     'Adicionar ao carrinho!',
   );
+  cartButton.addEventListener('click', async () => {
+    // Produto adicionado ao LocalStorage com a função pronta savCartID:
+    saveCartID(id);
+    // Obtendo informações do produto, utilizando a função fetchProduct:
+    const infoProduct = await fetchProduct(id);
+    // Chamando o elemento HTML .cart_products:local do carrinho:
+    const cartProducts = document.querySelector('.cart__products');
+    // Adicionando o elemento retornado da função createCartElement(product) como filho do elemento "cart__products".
+    cartProducts.appendChild(createCartProductElement(infoProduct));
+  });
+
   section.appendChild(cartButton);
 
   return section;
