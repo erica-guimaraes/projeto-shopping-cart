@@ -1,13 +1,13 @@
 const BASE_URL = 'https://api.mercadolibre.com/sites/MLB/search?q=';
 const ID_URL = 'https://api.mercadolibre.com/items/';
 
-export const fetchProduct = (id) => {
+export const fetchProduct = async (id) => {
   if (!id) {
     throw new Error('ID não informado');
   }
-  return fetch(`${ID_URL} ${id}`)
-    .then((response) => response.json())
-    .then((data) => data);
+  const response = await fetch(`${ID_URL}${id}`);
+  const data = await response.json();
+  return data;
 };
 
 export const fetchProductsList = (busca) => {

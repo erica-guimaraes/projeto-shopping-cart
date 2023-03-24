@@ -21,4 +21,7 @@ describe('Teste a função fetchProductsList', () => {
   it('Testando o retorno da função fetchProductsList com o argumento computador ', async() => {
     expect(await fetchProductsList('computador')).toEqual(computadorSearch);
   });
+  it('A função fetchProductsList deve retornar uma mensagem de erro, caso não receba um parâmetro de busca', async() => {
+    await expect(fetchProductsList()).rejects.toThrow(new Error('Termo de busca não informado'));
+  })
 });

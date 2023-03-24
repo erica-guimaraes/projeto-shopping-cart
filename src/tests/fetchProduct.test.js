@@ -21,4 +21,7 @@ describe('Teste a função fetchProduct', () => {
   it('Testando o retorno da função fetchProduct com o argumento "MLB1405519561"', async() => {
     expect(await fetchProduct('MLB1405519561')).toEqual(product);
   });
+  it('A função fetchProduct deve retornar uma mensagem de erro, caso não receba como parâmetro um id', async() => {
+    await expect(fetchProduct()).rejects.toThrow(new Error('ID não informado'));
+  })
 });
